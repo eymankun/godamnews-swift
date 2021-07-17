@@ -16,7 +16,6 @@ struct NewsData: Codable {
         var id: String{
             return String(objectID)
         }
-        
         let title: String
         let url: String?
         let objectID: Int

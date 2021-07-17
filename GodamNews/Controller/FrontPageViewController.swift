@@ -39,7 +39,7 @@ class FrontPageViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
         cell.textLabel?.text = dummyData.hits[indexPath.row].title
         cell.detailTextLabel?.text = dummyData.hits[indexPath.row].url
         
