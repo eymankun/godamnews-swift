@@ -13,11 +13,12 @@ struct NewsData: Codable {
     
     struct HitData: Codable, Identifiable {
         
-        var id: String{
-            return String(objectID)
+        var id : String {
+            return objectID
         }
+        
         let title: String
         let url: String?
-        let objectID: Int
+        let objectID: String
     }
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CC71FC1B26A2BBF40014FC31 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC71FC1A26A2BBF40014FC31 /* Constants.swift */; };
+		CC71FC1D26A305F60014FC31 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC71FC1C26A305F60014FC31 /* NetworkManager.swift */; };
 		CCC148EC269AD8A7003E92EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC148EB269AD8A7003E92EC /* AppDelegate.swift */; };
 		CCC148EE269AD8A7003E92EC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC148ED269AD8A7003E92EC /* SceneDelegate.swift */; };
 		CCC148F0269AD8A7003E92EC /* FrontPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC148EF269AD8A7003E92EC /* FrontPageViewController.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		CC71FC1A26A2BBF40014FC31 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CC71FC1C26A305F60014FC31 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CCC148E8269AD8A7003E92EC /* GodamNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GodamNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCC148EB269AD8A7003E92EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CCC148ED269AD8A7003E92EC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				CCC148EF269AD8A7003E92EC /* FrontPageViewController.swift */,
+				CC71FC1C26A305F60014FC31 /* NetworkManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC71FC1D26A305F60014FC31 /* NetworkManager.swift in Sources */,
 				CC71FC1B26A2BBF40014FC31 /* Constants.swift in Sources */,
 				CCC14903269ADF9D003E92EC /* NewsData.swift in Sources */,
 				CCC148F0269AD8A7003E92EC /* FrontPageViewController.swift in Sources */,
