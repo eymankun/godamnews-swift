@@ -6,3 +6,19 @@
 //
 
 import Foundation
+
+struct NewsData: Codable {
+    
+    let hits: [HitData]
+    
+    struct HitData: Codable, Identifiable {
+        
+        var id: String{
+            return String(objectID)
+        }
+        
+        let title: String
+        let url: String?
+        let objectID: Int
+    }
+}
