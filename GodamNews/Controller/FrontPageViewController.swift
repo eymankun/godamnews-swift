@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FrontPageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NetworkManagerDelegate {
+class FrontPageViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -34,12 +34,30 @@ class FrontPageViewController: UIViewController, UITableViewDelegate, UITableVie
         networkManager.getPost()
                 
     }
-    
+}
+
+//MARK: - NetworkManagerDelegate
+
+extension FrontPageViewController: NetworkManagerDelegate {
+    func didUpdatePostData(networkManager: NetworkManager, post: NewsData) {
+        posts = post
+        print(posts)
+        tableView.reloadData()
+    }
+}
+
+//MARK: - UITableViewDelegate
+
+extension FrontPageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        print("you tapped me at \(dummyData.hits[indexPath.row].id)")
         print(posts.hits[indexPath.row].title)
     }
-    
+}
+
+//MARK: - UITableViewDataSource
+
+extension FrontPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return dummyData.hits.count
         return posts.hits.count
@@ -53,12 +71,6 @@ class FrontPageViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.detailTextLabel?.text = posts.hits[indexPath.row].url
         
         return cell
-    }
-    
-    func didUpdatePostData(networkManager: NetworkManager, post: NewsData) {
-        posts = post
-        print(posts)
-        tableView.reloadData()
     }
 }
 
