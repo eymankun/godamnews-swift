@@ -6,17 +6,22 @@
 //
 
 import UIKit
+import WebKit
 
 class DetailViewController: UIViewController {
     
     var urlString = String()
 
     @IBOutlet weak var testLabel: UILabel!
+    @IBOutlet weak var webView: WKWebView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         testLabel.text = urlString
+        webView.load(URLRequest(url: URL(string: urlString)!))
+        webView.allowsBackForwardNavigationGestures = true
         print(urlString)
         // Do any additional setup after loading the view.
     }

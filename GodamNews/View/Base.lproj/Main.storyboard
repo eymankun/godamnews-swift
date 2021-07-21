@@ -86,10 +86,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KIX-Zu-cxU">
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Py2-3c-iYU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Py2-3c-iYU" firstAttribute="trailing" secondItem="KIX-Zu-cxU" secondAttribute="trailing" id="6ik-zu-cW3"/>
+                            <constraint firstItem="KIX-Zu-cxU" firstAttribute="top" secondItem="Py2-3c-iYU" secondAttribute="top" id="DT8-Dz-0wN"/>
+                            <constraint firstItem="Py2-3c-iYU" firstAttribute="bottom" secondItem="KIX-Zu-cxU" secondAttribute="bottom" id="Yzk-ib-HhW"/>
+                            <constraint firstItem="KIX-Zu-cxU" firstAttribute="leading" secondItem="Py2-3c-iYU" secondAttribute="leading" id="dec-Qw-TW7"/>
                             <constraint firstItem="GYK-Ha-g7m" firstAttribute="centerY" secondItem="Jw3-8i-7mv" secondAttribute="centerY" id="eBk-QS-T1D"/>
                             <constraint firstItem="GYK-Ha-g7m" firstAttribute="centerX" secondItem="Jw3-8i-7mv" secondAttribute="centerX" id="wot-9O-Xeb"/>
                         </constraints>
@@ -97,6 +109,7 @@
                     <navigationItem key="navigationItem" id="Pqb-O3-aAR"/>
                     <connections>
                         <outlet property="testLabel" destination="GYK-Ha-g7m" id="qxY-af-rP7"/>
+                        <outlet property="webView" destination="KIX-Zu-cxU" id="LbC-aA-Z9Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G68-px-D5x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
