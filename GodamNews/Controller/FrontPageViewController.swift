@@ -21,7 +21,6 @@ class FrontPageViewController: UIViewController {
 //    ])
 
     var posts = NewsData.init(hits: [])
-    
     var networkManager = NetworkManager()
     
     override func viewDidLoad() {
@@ -32,7 +31,16 @@ class FrontPageViewController: UIViewController {
         networkManager.delegate = self
         
         networkManager.getPost()
-                
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let indexPath = self.tableView.indexPathForSelectedRow!
+        let vc = segue.destination as! DetailViewController
+        if segue.identifier == "ToDetailView" {
+            if let urlString = posts.hits[indexPath.row].url {
+                vc.urlString = urlString
+            }
+        }
     }
 }
 
@@ -51,7 +59,7 @@ extension FrontPageViewController: NetworkManagerDelegate {
 extension FrontPageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        print("you tapped me at \(dummyData.hits[indexPath.row].id)")
-        print(posts.hits[indexPath.row].title)
+//        print(posts.hits[indexPath.row].title)
     }
 }
 
