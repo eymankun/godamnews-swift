@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Front Page-->
+        <!--Godam News-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="FrontPageViewController" customModule="GodamNews" customModuleProvider="target" sceneMemberID="viewController">
@@ -59,7 +59,7 @@
                             <constraint firstItem="D81-wY-WAf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="rJE-at-qGG"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Front Page" id="d9s-rD-o1C"/>
+                    <navigationItem key="navigationItem" title="Godam News" id="d9s-rD-o1C"/>
                     <connections>
                         <outlet property="tableView" destination="D81-wY-WAf" id="tmb-sB-jeg"/>
                     </connections>
@@ -87,7 +87,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KIX-Zu-cxU">
-                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -106,7 +106,7 @@
                             <constraint firstItem="GYK-Ha-g7m" firstAttribute="centerX" secondItem="Jw3-8i-7mv" secondAttribute="centerX" id="wot-9O-Xeb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Pqb-O3-aAR"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="Pqb-O3-aAR"/>
                     <connections>
                         <outlet property="testLabel" destination="GYK-Ha-g7m" id="qxY-af-rP7"/>
                         <outlet property="webView" destination="KIX-Zu-cxU" id="LbC-aA-Z9Y"/>

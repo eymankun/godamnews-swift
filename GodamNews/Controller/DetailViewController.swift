@@ -18,24 +18,23 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        testLabel.text = urlString
-        webView.load(URLRequest(url: URL(string: urlString)!))
+//        testLabel.text = urlString
+        loadWebView(with: urlString)
         webView.allowsBackForwardNavigationGestures = true
-        print(urlString)
-        // Do any additional setup after loading the view.
     }
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func loadWebView(with postURLString: String) {
+        let url = URL(string: postURLString)
+        if url == nil {
+            let alert = UIAlertController(title: "Error", message: "This post has no link", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+//                print("action button tapped.")
+                self.navigationController?.popViewController(animated: true)
+            }))
+            self.present(alert, animated: true)
+        } else {
+            webView.load(URLRequest(url: url!))
+        }
     }
-    */
 
 }
