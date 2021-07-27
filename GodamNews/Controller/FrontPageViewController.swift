@@ -10,18 +10,10 @@ import UIKit
 class FrontPageViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
-//    let dummyData = NewsData(hits: [
-//        NewsData.HitData(title: "title1", url: "url1", objectID: "1"),
-//        NewsData.HitData(title: "title2", url: "url2", objectID: "2"),
-//        NewsData.HitData(title: "title3", url: "url3", objectID: "3"),
-//        NewsData.HitData(title: "title4", url: "url4", objectID: "4"),
-//        NewsData.HitData(title: "title5", url: nil, objectID: "5"),
-//        NewsData.HitData(title: "title6", url: "url6", objectID: "6")
-//    ])
 
     var posts = NewsData.init(hits: [])
     var networkManager = NetworkManager()
+//    var detailVC = DetailViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,18 +22,27 @@ class FrontPageViewController: UIViewController {
         tableView.dataSource = self
         networkManager.delegate = self
         
+        registerTableViewCell()
         networkManager.getPost()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let indexPath = self.tableView.indexPathForSelectedRow!
-        let vc = segue.destination as! DetailViewController
-        if segue.identifier == "ToDetailView" {
-            if let urlString = posts.hits[indexPath.row].url {
-                vc.urlString = urlString
-            }
-        }
+    func registerTableViewCell() {
+        let customCell = UINib(nibName: K.customTableViewCell, bundle: nil)
+        self.tableView.register(customCell, forCellReuseIdentifier: K.customTableViewCell)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 500
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let indexPath = self.tableView.indexPathForSelectedRow!
+////        let vc = segue.destination as! DetailViewController
+//        if segue.identifier == K.cellIdentifier {
+//            if let urlString = posts.hits[indexPath.row].url {
+////                vc.urlString = urlString
+//                detailVC.urlString = urlString
+//            }
+//        }
+//    }
 }
 
 //MARK: - NetworkManagerDelegate
@@ -49,7 +50,7 @@ class FrontPageViewController: UIViewController {
 extension FrontPageViewController: NetworkManagerDelegate {
     func didUpdatePostData(networkManager: NetworkManager, post: NewsData) {
         posts = post
-        print(posts)
+//        print(posts)
         tableView.reloadData()
     }
 }
@@ -58,26 +59,31 @@ extension FrontPageViewController: NetworkManagerDelegate {
 
 extension FrontPageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("you tapped me at \(dummyData.hits[indexPath.row].id)")
-//        print(posts.hits[indexPath.row].title)
+        tableView.deselectRow(at: indexPath, animated: true)
+        print(posts.hits[indexPath.row].title)
+        
+        if posts.hits[indexPath.row].url == nil {
+            print("There is no URL for this post.")
+        } else if let urlString = posts.hits[indexPath.row].url {
+            let vc = DetailViewController(urlString: urlString)
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        
+//        performSegue(withIdentifier: "FrontToDetail", sender: FrontPageViewController.self)
     }
 }
 
 //MARK: - UITableViewDataSource
 
 extension FrontPageViewController: UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return dummyData.hits.count
         return posts.hits.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//        cell.textLabel?.text = dummyData.hits[indexPath.row].title
-//        cell.detailTextLabel?.text = dummyData.hits[indexPath.row].url
-        cell.textLabel?.text = posts.hits[indexPath.row].title
-        cell.detailTextLabel?.text = posts.hits[indexPath.row].url
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.customTableViewCell, for: indexPath) as! CustomTableViewCell
+        cell.postTitle.text = posts.hits[indexPath.row].title
         return cell
     }
 }

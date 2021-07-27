@@ -10,31 +10,63 @@ import WebKit
 
 class DetailViewController: UIViewController {
     
-    var urlString = String()
-
-    @IBOutlet weak var testLabel: UILabel!
-    @IBOutlet weak var webView: WKWebView!
+    private var urlString = String()
     
+    var wkwebView: WKWebView!
+    @IBOutlet var webView: WKWebView!
+    
+    init(urlString: String) {
+        self.urlString = urlString
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
+        let webConfig = WKWebViewConfiguration()
+        webView = WKWebView(frame: .zero, configuration: webConfig)
+        view = webView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        testLabel.text = urlString
-        loadWebView(with: urlString)
-        webView.allowsBackForwardNavigationGestures = true
+        
+        print(urlString)
+        
+        webView.load(URLRequest(url: URL(string: urlString)!))
+        
+//        loadWebView(with: urlString)
     }
     
-    func loadWebView(with postURLString: String) {
-        let url = URL(string: postURLString)
-        if url == nil {
-            let alert = UIAlertController(title: "Error", message: "This post has no link", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-//                print("action button tapped.")
-                self.navigationController?.popViewController(animated: true)
-            }))
-            self.present(alert, animated: true)
-        } else {
-            webView.load(URLRequest(url: url!))
-        }
+    func loadWebView(with url: String) {
+        
+        wkwebView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        self.view.addSubview(wkwebView)
+        let request = URLRequest(url: URL(string: urlString)!)
+        wkwebView.load(request)
+        wkwebView.allowsBackForwardNavigationGestures = true
+//        navigationItem = UIBarButtonItem(title: "<", style: .plain, target: self, action: #selector(goBack))
+        
+        
+        
+        navigationItem.rightBarButtonItems =
+            [ UIBarButtonItem(title: ">", style: .plain, target: self, action: #selector(goForward)),
+              UIBarButtonItem(title: "<", style: .plain, target: self, action: #selector(goBack))
+            ]
+        
     }
-
+    @objc func goBack() {
+        wkwebView.goBack()
+    }
+    @objc func refreshButton() {
+        navigationController?.popToRootViewController(animated: true)
+    }
+    @objc func goForward() {
+        wkwebView.goForward()
+    }
+    
 }
+
+
